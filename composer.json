@@ -1,0 +1,13 @@
+{
+    "name": "sachingk/kvpair",
+    "description": "KV Pair System For Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sachin G Kulkarni",
+            "email": "sachingk.30@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
