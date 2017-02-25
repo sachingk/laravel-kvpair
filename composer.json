@@ -1,5 +1,5 @@
 {
-    "name": "sachingk/kvpair",
+    "name": "laravel-kvpair",
     "description": "KV Pair System For Laravel",
     "license": "MIT",
     "authors": [
@@ -11,11 +11,6 @@
     "minimum-stability": "stable",
     "require": {},
 
-    "autoload": {
-        "psr-4": {
-            "sachingk\\kvpair": "sachingk/kvpair"
-        }
-    },
 
     "scripts": {
         "post-install-cmd": [
