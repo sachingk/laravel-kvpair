@@ -75,7 +75,7 @@ class KVPair
     {
 
         $Pair = KVPairModel::all(["key", "value", "description", "group"])->where("key", "=", $key)->toArray();
-        return (isset($Pair) && !empty($Pair) == true ? (object)$Pair[0] : false);
+        return (!empty($Pair) == true ? (object)$Pair[0] : false);
     }
 
     /***
@@ -175,6 +175,10 @@ class KVPair
      */
     public static function deleteKVPairByKey($key)
     {
+        if(!empty($key)) {
+            return false;
+        }
+
         $Status = KVPairModel::where("key","=",$key)->delete();
         return (boolean)$Status;
     }
@@ -186,6 +190,9 @@ class KVPair
      */
     public static function deleteKVPairByKeys($keys)
     {
+        if(!empty($keys)) {
+            return false;
+        }
         $Status = KVPairModel::whereIn("key",$keys)->delete();
         return (boolean)$Status;
     }
@@ -197,6 +204,10 @@ class KVPair
      */
     public static function deleteKVPairByGroup($group)
     {
+        if(!empty($group)) {
+            return false;
+        }
+
         $Status = KVPairModel::where("group","=",$group)->delete();
         return (boolean)$Status;
     }
@@ -208,6 +219,10 @@ class KVPair
      */
     public static function deleteKVPairByGroups($groups)
     {
+        if(!empty($groups)) {
+            return false;
+        }
+
         $Status = KVPairModel::whereIn("group",$groups)->delete();
         return (boolean)$Status;
     }
@@ -218,6 +233,9 @@ class KVPair
      */
     public static function deleteAllKVPair()
     {
+        if(KVPairModel::count() == 0) {
+            return false;
+        }
         $Status = KVPairModel::truncate();
         return (boolean)$Status;
     }
