@@ -9,5 +9,28 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+
+    "autoload": {
+        "psr-4": {
+            "sachingk\\kvpair": "sachingk/kvpair"
+        }
+    },
+
+    "scripts": {
+        "post-install-cmd": [
+
+
+        ],
+        "post-update-cmd": [
+
+        ],
+        "post-create-project-cmd": [
+
+        ],
+        "post-autoload-dump": [
+            "sachingk\\kvpair\\install::postPackageInstall"
+        ]
+
+    }
 }

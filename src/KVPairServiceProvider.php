@@ -13,11 +13,25 @@ class KVPairServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
         $this->loadTranslationsFrom( __DIR__.'/Lang', 'kvpair');
+
+        $this->loadMigrationsFrom(__DIR__.'/database/migration');
 
         $this->publishes([
             __DIR__.'/Config/kvpair.php' => config_path('kvpair.php'),
         ], 'config');
+
+
+        $this->publishes([
+            __DIR__.'/database/migration'=> database_path('migrations')
+        ], 'migrations');
+
+
+        $this->publishes([
+            __DIR__.'/Lang'=> base_path('resources/lang')
+        ], 'lang');
     }
 
     /**
@@ -32,10 +46,8 @@ class KVPairServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom( __DIR__.'/Config/kvpair.php', 'kvpair');
 
-
-
-        $this->app->singleton('kvpair', function ($app) {
-            return new kvpair();
+        $this->app->singleton('KVPair', function ($app) {
+            return new KVPair();
         });
 
     }
