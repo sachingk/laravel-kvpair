@@ -11,11 +11,7 @@
     "minimum-stability": "stable",
     "require": {},
 
-    "autoload": {
-        "psr-4": {
-            "sachingk\\kvpair": "sachingk/kvpair"
-        }
-    },
+   
 
     "scripts": {
         "post-install-cmd": [
