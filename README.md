@@ -3,7 +3,7 @@ KV Pair System For Laravel 5.4
 
 ## Introduction
 
-Key-Value pair is being used in most of the cases where only developer will maintain and change the list. Developer usually tends to keep these key-value pair config file.
+Key-Value pair is being used in most of the cases where only developer will maintain and change the list. Developer usually tends to keep these key-value pair in config file.
 
 While this works just fine in small applications, it becomes very difficult to manage and maintain when the list grows.Unfortunately all application starts small, but grows big very quickly.
 
