@@ -3,6 +3,7 @@
 namespace sachingk\kvpair;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 use sachingk\kvpair\KVPairModel;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -87,9 +88,12 @@ class KVPair
     public static function getKVPairByKeys($keys, $forDropDown = false)
     {
         $selectTxt = trans('kvpair_lang.select');
+        $selectKey = config("kvpair.selectKey");
+
+        if(config("kvpair.alwaysGetForDropdown") == true)  $forDropDown = true;
 
         if ($forDropDown == true) {
-            $Pairs = array('' => $selectTxt) + KVPairModel::whereIn("key", $keys)->pluck("key", "value")->toArray();
+            $Pairs = array($selectKey => $selectTxt) + KVPairModel::whereIn("key", $keys)->pluck("key", "value")->toArray();
         } else {
             $Pairs = KVPairModel::all(["key", "value", "description", "group"])->whereIn("key", $keys)->toArray();
         }
@@ -107,6 +111,9 @@ class KVPair
     public static function getKVPairByGroup($group, $forDropDown = false)
     {
         $selectTxt = trans('kvpair_lang.select');
+        $selectKey = config("kvpair.selectKey");
+
+        if(config("kvpair.alwaysGetForDropdown") == true)  $forDropDown = true;
 
         if ($forDropDown == true) {
             $Pairs = array('' => $selectTxt) + KVPairModel::where("group", "=", $group)->pluck("key", "value")->toArray();
@@ -126,8 +133,12 @@ class KVPair
     public static function getKVPairByGroups($groups, $forDropDown = false)
     {
         $selectTxt = trans('kvpair_lang.select');
+        $selectKey = config("kvpair.selectKey");
+
+        if(config("kvpair.alwaysGetForDropdown") == true)  $forDropDown = true;
+
         if ($forDropDown == true) {
-            $Pairs = array('' => $selectTxt) + KVPairModel::whereIn("group", $groups)->pluck("key", "value")->toArray();
+            $Pairs = array($selectKey => $selectTxt) + KVPairModel::whereIn("group", $groups)->pluck("key", "value")->toArray();
         } else {
             $Pairs = KVPairModel::all(["key", "value", "description", "group"])->whereIn("group", $groups)->toArray();
         }
@@ -143,9 +154,12 @@ class KVPair
     public static function getAllKVPair($forDropDown = false)
     {
         $selectTxt = trans('kvpair_lang.select');
+        $selectKey = config("kvpair.selectKey");
+
+        if(config("kvpair.alwaysGetForDropdown") == true)  $forDropDown = true;
 
         if ($forDropDown == true) {
-            $Pairs = array('' => $selectTxt) + KVPairModel::pluck("key", "value")->toArray();
+            $Pairs = array($selectKey => $selectTxt) + KVPairModel::pluck("key", "value")->toArray();
         } else {
             $Pairs = KVPairModel::all(["key", "value", "description", "group"])->toArray();
         }
