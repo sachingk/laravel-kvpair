@@ -373,7 +373,7 @@ To set your configurations , you have to publish the config file using artisan c
 ```php
 php artisan vendor:publish --tag=config
 ```
-```
+
 
 Now the configuration file get copied to /config folder.You can set your preference here.
 
