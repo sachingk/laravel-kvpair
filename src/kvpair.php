@@ -95,7 +95,7 @@ class KVPair
         if ($forDropDown == true) {
             $Pairs = array($selectKey => $selectTxt) + KVPairModel::whereIn("key", $keys)->pluck("key", "value")->toArray();
         } else {
-            $Pairs = KVPairModel::all(["key", "value", "description", "group"])->whereIn("key", $keys)->toArray();
+            $Pairs = KVPairModel::all()->whereIn("key", $keys)->toArray();
         }
         return (isset($Pairs) == true && !empty($Pairs) ? $Pairs : false);
 
@@ -118,7 +118,7 @@ class KVPair
         if ($forDropDown == true) {
             $Pairs = array('' => $selectTxt) + KVPairModel::where("group", "=", $group)->pluck("key", "value")->toArray();
         } else {
-            $Pairs = KVPairModel::all(["key", "value", "description", "group"])->where("group", "=", $group)->toArray();
+            $Pairs = KVPairModel::all()->where("group", "=", $group)->toArray();
         }
         return (isset($Pairs) == true && !empty($Pairs) ? $Pairs : false);
     }
@@ -140,7 +140,7 @@ class KVPair
         if ($forDropDown == true) {
             $Pairs = array($selectKey => $selectTxt) + KVPairModel::whereIn("group", $groups)->pluck("key", "value")->toArray();
         } else {
-            $Pairs = KVPairModel::all(["key", "value", "description", "group"])->whereIn("group", $groups)->toArray();
+            $Pairs = KVPairModel::all()->whereIn("group", $groups)->toArray();
         }
         return (isset($Pairs) == true && !empty($Pairs) ? $Pairs : false);
     }
@@ -161,7 +161,7 @@ class KVPair
         if ($forDropDown == true) {
             $Pairs = array($selectKey => $selectTxt) + KVPairModel::pluck("key", "value")->toArray();
         } else {
-            $Pairs = KVPairModel::all(["key", "value", "description", "group"])->toArray();
+            $Pairs = KVPairModel::all()->toArray();
         }
 
         return (isset($Pairs) && !empty($Pairs) == true ? $Pairs : false);

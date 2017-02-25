@@ -3,22 +3,17 @@ KV Pair System For Laravel 5.4
 
 ## Introduction
 
-Key-Value pair is being used in most of the cases where only developer will maintain & change the list. Developer usually tends to keep these key-value pair config file.
+Key-Value pair is being used in most of the cases where only developer will maintain and change the list. Developer usually tends to keep these key-value pair config file.
 
-While this works just fine in small applications, it becomes very difficult to manage & maintain when the list grows.Unfortunately all application starts small, but grows big very quickly.
+While this works just fine in small applications, it becomes very difficult to manage and maintain when the list grows.Unfortunately all application starts small, but grows big very quickly.
 
 To address this problem, I have developed a KV Pair system for laravel framework which stores the KV Pair in the database.
 
-#### Benefits, Benefits & Benefits
+#### Benefits, Benefits and Benefits
 - All your KV Pair are inside on table. Hence you can use them in your SQL joins
 - You can give description for every KV Pair
 - You can put KV pairs in a group (aka Group them)
 - Get the KV pairs ready to bind with select html control
- For Example :  <select>
-     <option>Select</option>
-      <option>In Progress</option>
-       <option>Completed</option>
-   </select>
 - Multiple Language Support for "select" string
 
 
@@ -34,9 +29,13 @@ After updating composer, add the ServiceProvider to the providers array in confi
 
 ### Laravel 5.x:
 
+#### Add Service Provider
+
 ```php
  sachingk\kvpair\KVPairServiceProvider::class,
 ```
+
+#### Add Facade
 
 If you want to use the facade , add this to your facades in app.php:
 
@@ -44,6 +43,15 @@ If you want to use the facade , add this to your facades in app.php:
  "KVPair"=> sachingk\kvpair\Facade\kvpair::class,
 ```
 
+#### Make Migration
+
+Now you need to run artisan migrate command via command line. If you wish to add more columns to the table before migration then run the following command in command line.
+
+```php
+ php artisan vendor:publish --tag=migrations
+```
+
+Now the migration file get copied to /database/migrations folder. Add any extra columns you need and then run the migrate artisan command.
 
 ## Usage
 
@@ -347,5 +355,38 @@ KVPair::countAllKVPair()
 This function will return the integer value.
 
 ## Configuration
+This package has 2 configurations which developer can set based on their choice.
 
+- alwaysGetForDropdown
+- selectKey
 
+##### alwaysGetForDropdown
+If this is set to TRUE all the get functions (except getKVPairByKey) will give the output ready to
+bind with select html control by default. The $forDropDown parameter passed will be ignored
+
+##### selectKey
+ Value assigned to this will used as a key for select when rendering the get function for dropdown.
+
+### How to configure
+To set your configurations , you have to publish the config file using artisan command.
+
+```php
+php artisan vendor:publish --tag=config
+```
+```
+
+Now the configuration file get copied to /config folder.You can set your preference here.
+
+## Multilingual
+
+This package support multiple language for "select" during the output for dropdown.The translations are take from the language files based on the setting of locale in /Config/app.php.
+
+To start with you can run following publish command to get the default language files of this package.
+
+```php
+php artisan vendor:publish --tag=lang
+```
+
+Now the language files get copied to /resources/lang folder. You can add more languages from here by creating individual folder for each language and adding kvpair_lang.php under them.
+
+For now this package creates language file for english and kannada (indian language)

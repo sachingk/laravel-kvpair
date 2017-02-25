@@ -29,7 +29,7 @@
 
         ],
         "post-autoload-dump": [
-            "sachingk\\kvpair\\install::postPackageInstall"
+
         ]
 
     }
